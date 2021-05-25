@@ -1,0 +1,36 @@
+#######################################
+# Syntax Coloring Map For TimerMs
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+TimerMs	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setTimerMode	KEYWORD2
+setPeriodMode	KEYWORD2
+setTime	KEYWORD2
+attach	KEYWORD2
+detach	KEYWORD2
+start	KEYWORD2
+restart	KEYWORD2
+resume	KEYWORD2
+stop	KEYWORD2
+force	KEYWORD2
+tick	KEYWORD2
+ready	KEYWORD2
+elapsed	KEYWORD2
+active	KEYWORD2
+status	KEYWORD2
+timeLeft	KEYWORD2
+timeLeft8	KEYWORD2
+timeLeft16	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
