@@ -12,6 +12,7 @@ TimerMs	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
+setMicros	KEYWORD2
 setTimerMode	KEYWORD2
 setPeriodMode	KEYWORD2
 setTime	KEYWORD2

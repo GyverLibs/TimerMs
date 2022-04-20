@@ -17,10 +17,11 @@
 
     Версии:
     v1.0 - релиз
+    v1.1 - добавил микросекундный режим
 */
 
-#ifndef TimerMs_h
-#define TimerMs_h
+#ifndef _TimerMs_h
+#define _TimerMs_h
 #include <Arduino.h>
 
 class TimerMs {
@@ -31,38 +32,62 @@ public:
         if (state) start();
         _mode = mode;
     }
-    void setTimerMode() {   			// установить в режим таймера (остановится после срабатывания)
+    
+    // включить микросекундный режим (true)
+    void setMicros(bool mode) {
+        _us = mode;
+    }
+    
+    // установить в режим таймера (остановится после срабатывания)
+    void setTimerMode() {
         _mode = 1;
     }
-    void setPeriodMode() {  			// установить в режим периода (перезапустится после срабатывания)
+    
+    // установить в режим периода (перезапустится после срабатывания)
+    void setPeriodMode() {
         _mode = 0;
     }
-    void setTime(uint32_t prd) {  		// установить время
+    
+    // установить время
+    void setTime(uint32_t prd) {
         _prd = (prd == 0) ? 1 : prd;
     }
-    void attach(void (*handler)()) {	// подключить коллбэк
+    
+    // подключить коллбэк
+    void attach(void (*handler)()) {
         _handler = *handler;
     }
+    
+    // отключить коллбэк
     void detach() {
-        _handler = NULL;
+        _handler = nullptr;
     }
 
-    void start() {          	// запустить/перезапустить таймер
+    // запустить/перезапустить таймер
+    void start() {
         _state = true;  
         _tmr = uptime();
     }
+    
+    // перезапустить
     void restart() {
         start();
     }
-    void resume() {         	// продолжить после остановки
+    
+    // продолжить после остановки
+    void resume() {
         _state = true;
         _tmr = uptime() - _buf;
     }
-    void stop() {           	// остановить/приостановить таймер
+    
+    // остановить/приостановить таймер
+    void stop() {
         _state = false;
         _buf = uptime() - _tmr;
     }
-    void force() {          	// принудительно переполнить таймер
+    
+    // принудительно переполнить таймер
+    void force() {
         _tmr = uptime() - _prd;
     }
 
@@ -80,41 +105,49 @@ public:
         return false;
     }
     
-    bool ready() {			// однократно вернёт true при срабатывании (флаг)
-        if (_ready) {
-            _ready = 0;
-            return true;
-        }
-        return false;
+    // однократно вернёт true при срабатывании (флаг)
+    bool ready() {
+        return _ready ? _ready = 0, 1 : 0;
     }
-    bool elapsed() {        // всегда возвращает true при срабатывании
+    
+    // всегда возвращает true при срабатывании
+    bool elapsed() {
         return (uptime() - _tmr >= _prd);
     }
-    bool active() {         // работает ли таймер (start/resume)
+    
+    // работает ли таймер (start/resume)
+    bool active() {
         return _state;
     }
-    bool status() {         // elapsed+active: работает ли таймер + не сработал ли он      
+    
+    // elapsed+active: работает ли таймер + не сработал ли он  
+    bool status() {
         return _state && !elapsed();
     }
     
     // остаток времени
-    uint32_t timeLeft() {   	// остаток времени в мс
+    uint32_t timeLeft() {
         return max(long(_prd - _buf), 0L);
     }
-    uint8_t timeLeft8() {   	// остаток времени в 0-255
+    
+    // остаток времени в 0-255
+    uint8_t timeLeft8() {
         return max(255 - _buf * 255l / _prd, 0ul);
     }
-    uint16_t timeLeft16() { 	// остаток времени в 0-65535
+    
+    // остаток времени в 0-65535
+    uint16_t timeLeft16() {
         return max(65535 - _buf * 65535l / _prd, 0ul);
     }
     
-    uint32_t uptime() {					// на случай использования в других фреймворках
-        return millis();
+    // на случай использования в других фреймворках
+    uint32_t uptime() {
+        return _us ? micros() : millis();
     }
 
 private:
     uint32_t _tmr = 0, _prd = 1000, _buf = 0;
-    bool _state = 0, _mode = 0, _ready = 0;
-    void (*_handler)() = NULL;
+    bool _state = 0, _mode = 0, _ready = 0, _us = 0;
+    void (*_handler)() = nullptr;
 };
 #endif
