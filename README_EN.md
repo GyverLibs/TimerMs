@@ -1,3 +1,5 @@
+This is an automatic translation, may be incorrect in some places. See sources and examples!
+
 # TimerMs
 Multifunctional software timer on millis() system timer for Arduino
 - Timer and periodic execution mode
