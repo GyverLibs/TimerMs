@@ -79,8 +79,8 @@ public:
     
     // продолжить после остановки
     void resume() {
+        if (!_state) _tmr = uptime() - _buf;
         _state = true;
-        _tmr = uptime() - _buf;
     }
     
     // остановить/приостановить таймер
