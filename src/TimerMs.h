@@ -70,6 +70,12 @@ public:
         _state = true;  
         _tmr = uptime();
 		_buf = 0;
+        _calls = 0;
+    }
+    
+    // установить максимальное количество срабатываний до остановки
+    void setLimit(uint8_t limit) {
+        _limit = limit;
     }
     
     // перезапустить
@@ -99,8 +105,12 @@ public:
     bool tick() {
         if (_state) _buf = uptime() - _tmr;
         if (_state && _buf >= _prd) {
-            if (!_mode) _tmr += _prd * (_buf / _prd);
-            else stop();
+            _calls++;
+            if (!_mode && (_limit == 0 || _calls < _limit)) {
+                _tmr += _prd * (_buf / _prd);
+            } else {
+                stop();
+            }
             if (*_handler) _handler();
             _ready = 1;
             return true;
@@ -150,6 +160,7 @@ public:
 
 private:
     uint32_t _tmr = 0, _prd = 1000, _buf = 0;
+    uint8_t _limit, _calls = 0;
     bool _state = 0, _mode = 0, _ready = 0, _us = 0;
     void (*_handler)() = nullptr;
 };

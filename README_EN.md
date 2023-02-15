@@ -6,6 +6,7 @@ Multifunctional software timer on millis() system timer for Arduino
 - Connecting a handler function
 - Reset/Start/Restart/Stop/Pause/Resume
 - Ability to force timer overflow
+- Ability to stop automatically after certain executions in the period mode
 - Return of the remaining time in ms, as well as arbitrary units of 8 and 16 bits
 - Several functions to get the current timer status
 - The algorithm keeps a stable period and is not afraid of millis() overflow
@@ -51,6 +52,7 @@ void setMicros(bool mode); // enable microsecond mode (true)
 void setTimerMode(); // set to timer mode (stop after firing)
 void setPeriodMode(); // set to period mode (restart after firing)
 void setTime(uint32_tprd); // set the time
+void setLimit(unit8_t limit) // set maximum number of executions in the period mode
 void attach(void (*handler)()); // connect callback
 void detach(); // disable callback
 void start(); // start/restart the timer
@@ -94,6 +96,8 @@ void loop() {
 ## Versions
 - v1.0
 - v1.1 - added microsecond mode
+- v1.2 - stop function fixed
+- v1.3 - added limited executions in the period mode
 
 <a id="feedback"></a>
 ## Bugs and feedback

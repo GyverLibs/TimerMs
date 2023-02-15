@@ -16,6 +16,7 @@ setMicros	KEYWORD2
 setTimerMode	KEYWORD2
 setPeriodMode	KEYWORD2
 setTime	KEYWORD2
+setLimit KEYWORD2
 attach	KEYWORD2
 detach	KEYWORD2
 start	KEYWORD2
