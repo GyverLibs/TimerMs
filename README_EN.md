@@ -52,7 +52,7 @@ void setMicros(bool mode); // enable microsecond mode (true)
 void setTimerMode(); // set to timer mode (stop after firing)
 void setPeriodMode(); // set to period mode (restart after firing)
 void setTime(uint32_tprd); // set the time
-void setLimit(unit8_t limit) // set maximum number of executions in the period mode
+void setLimit(unit8_t limit); // set maximum number of executions in the period mode
 void attach(void (*handler)()); // connect callback
 void detach(); // disable callback
 void start(); // start/restart the timer

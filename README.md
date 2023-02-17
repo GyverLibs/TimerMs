@@ -62,7 +62,7 @@ void setMicros(bool mode);      // включить микросекундный
 void setTimerMode();            // установить в режим таймера (остановится после срабатывания)
 void setPeriodMode();  			// установить в режим периода (перезапустится после срабатывания)
 void setTime(uint32_t prd);     // установить время
-void setLimit(unit8_t limit)   // установить лимит срабатываний в режиме периода
+void setLimit(unit8_t limit);   // установить лимит срабатываний в режиме периода
 void attach(void (*handler)()); // подключить коллбэк
 void detach();                  // отключить коллбэк
 void start();                   // запустить/перезапустить таймер
