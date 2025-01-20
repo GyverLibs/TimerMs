@@ -6,6 +6,9 @@
 
 [![Foo](https://img.shields.io/badge/ПОДПИСАТЬСЯ-НА%20ОБНОВЛЕНИЯ-brightgreen.svg?style=social&logo=telegram&color=blue)](https://t.me/GyverLibs)
 
+|⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️<br><br>**ВНИМАНИЕ, БИБЛИОТЕКА УСТАРЕЛА! ИСПОЛЬЗУЙ БИБЛИОТЕКУ [GTimer](https://github.com/GyverLibs/GTimer), ОНА ЛЕГЧЕ И ИМЕЕТ БОЛЬШЕ ВОЗМОЖНОСТЕЙ**<br><br>⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️|
+| --- |
+
 # TimerMs
 Многофункциональный программный таймер на системном таймере millis() для Arduino
 - Режим таймера и периодичного выполнения
